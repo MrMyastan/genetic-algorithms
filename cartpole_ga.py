@@ -1,3 +1,6 @@
+# slightly modified from https://github.com/paraschopra/deepneuroevolution and their 
+# great tutorial https://towardsdatascience.com/reinforcement-learning-without-gradients-evolving-agents-using-genetic-algorithms-8685817d84f
+
 # To add a new cell, type '# %%'
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
@@ -92,7 +95,6 @@ def run_agents(agents):
         for _ in range(250):
             
             inp = torch.tensor(observation).type('torch.FloatTensor').view(1,-1)
-            print(agent(inp).requires_grad)
             output_probabilities = agent(inp).detach().numpy()[0]
             action = np.random.choice(range(game_actions), 1, p=output_probabilities).item()
             new_observation, reward, done, info = env.step(action)
