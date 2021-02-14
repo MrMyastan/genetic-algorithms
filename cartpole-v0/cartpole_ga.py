@@ -257,10 +257,10 @@ def play_agent(agent):
 choice = input("What do? ")
 if choice == "train":
     agents, elite_index = train(generations=int(input("how much train? ")))
-    torch.save(agents[elite_index].state_dict(), "./elite.pt")
+    torch.save(agents[elite_index].state_dict(), "./fully_trained.pt")
     play_agent(agents[elite_index])
 if choice == "play":
     model = CartPoleAI()
-    model.load_state_dict(torch.load("./elite.pt"))
+    model.load_state_dict(torch.load("./fully_trained.pt"))
     play_agent(model)
 
